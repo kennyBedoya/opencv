@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project( ImageConvolution )
+project( mostrarImagen )
 find_package( OpenCV REQUIRED )
 add_executable( mostrar mostrar.cc )
-target_link_libraries( sobel ${OpenCV_LIBS} )
+target_link_libraries( mostrar ${OpenCV_LIBS} )

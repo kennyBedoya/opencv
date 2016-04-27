@@ -1,0 +1,1 @@
+/home/judge_hpccourse/kenny/opencv/prueba/build/CMakeFiles/mostrar.dir
