@@ -60,39 +60,39 @@ CMAKE_SOURCE_DIR = /home/judge_hpccourse/kenny/opencv/grises
 CMAKE_BINARY_DIR = /home/judge_hpccourse/kenny/opencv/grises/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/grises.dir
+# Target rules for target CMakeFiles/grises_s.dir
 
 # All Build rule for target.
-CMakeFiles/grises.dir/all:
-	$(MAKE) -f CMakeFiles/grises.dir/build.make CMakeFiles/grises.dir/depend
-	$(MAKE) -f CMakeFiles/grises.dir/build.make CMakeFiles/grises.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/judge_hpccourse/kenny/opencv/grises/build/CMakeFiles --progress-num=1,2 "Built target grises"
-.PHONY : CMakeFiles/grises.dir/all
+CMakeFiles/grises_s.dir/all:
+	$(MAKE) -f CMakeFiles/grises_s.dir/build.make CMakeFiles/grises_s.dir/depend
+	$(MAKE) -f CMakeFiles/grises_s.dir/build.make CMakeFiles/grises_s.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/judge_hpccourse/kenny/opencv/grises/build/CMakeFiles --progress-num=1,2 "Built target grises_s"
+.PHONY : CMakeFiles/grises_s.dir/all
 
 # Include target in all.
-all: CMakeFiles/grises.dir/all
+all: CMakeFiles/grises_s.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/grises.dir/rule: cmake_check_build_system
+CMakeFiles/grises_s.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/judge_hpccourse/kenny/opencv/grises/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/grises.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/grises_s.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/judge_hpccourse/kenny/opencv/grises/build/CMakeFiles 0
-.PHONY : CMakeFiles/grises.dir/rule
+.PHONY : CMakeFiles/grises_s.dir/rule
 
 # Convenience name for target.
-grises: CMakeFiles/grises.dir/rule
+grises_s: CMakeFiles/grises_s.dir/rule
 
-.PHONY : grises
-
-# clean rule for target.
-CMakeFiles/grises.dir/clean:
-	$(MAKE) -f CMakeFiles/grises.dir/build.make CMakeFiles/grises.dir/clean
-.PHONY : CMakeFiles/grises.dir/clean
+.PHONY : grises_s
 
 # clean rule for target.
-clean: CMakeFiles/grises.dir/clean
+CMakeFiles/grises_s.dir/clean:
+	$(MAKE) -f CMakeFiles/grises_s.dir/build.make CMakeFiles/grises_s.dir/clean
+.PHONY : CMakeFiles/grises_s.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/grises_s.dir/clean
 
 .PHONY : clean
 

@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named grises
+# Target rules for targets named grises_s
 
 # Build rule for target.
-grises: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grises
-.PHONY : grises
+grises_s: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grises_s
+.PHONY : grises_s
 
 # fast build rule for target.
-grises/fast:
-	$(MAKE) -f CMakeFiles/grises.dir/build.make CMakeFiles/grises.dir/build
-.PHONY : grises/fast
+grises_s/fast:
+	$(MAKE) -f CMakeFiles/grises_s.dir/build.make CMakeFiles/grises_s.dir/build
+.PHONY : grises_s/fast
 
 grises.o: grises.cc.o
 
@@ -129,7 +129,7 @@ grises.o: grises.cc.o
 
 # target to build an object file
 grises.cc.o:
-	$(MAKE) -f CMakeFiles/grises.dir/build.make CMakeFiles/grises.dir/grises.cc.o
+	$(MAKE) -f CMakeFiles/grises_s.dir/build.make CMakeFiles/grises_s.dir/grises.cc.o
 .PHONY : grises.cc.o
 
 grises.i: grises.cc.i
@@ -138,7 +138,7 @@ grises.i: grises.cc.i
 
 # target to preprocess a source file
 grises.cc.i:
-	$(MAKE) -f CMakeFiles/grises.dir/build.make CMakeFiles/grises.dir/grises.cc.i
+	$(MAKE) -f CMakeFiles/grises_s.dir/build.make CMakeFiles/grises_s.dir/grises.cc.i
 .PHONY : grises.cc.i
 
 grises.s: grises.cc.s
@@ -147,7 +147,7 @@ grises.s: grises.cc.s
 
 # target to generate assembly for a file
 grises.cc.s:
-	$(MAKE) -f CMakeFiles/grises.dir/build.make CMakeFiles/grises.dir/grises.cc.s
+	$(MAKE) -f CMakeFiles/grises_s.dir/build.make CMakeFiles/grises_s.dir/grises.cc.s
 .PHONY : grises.cc.s
 
 # Help Target
@@ -156,9 +156,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... grises"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... grises_s"
 	@echo "... grises.o"
 	@echo "... grises.i"
 	@echo "... grises.s"
