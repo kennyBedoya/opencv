@@ -32,11 +32,13 @@ int main( int argc, char** argv )
 
  
 
- data_image = image.data;
+ //data_image = image.clone();
+//Mat gray_image = image.clone();
  
 for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
-            data_image[(i*width+j)*3] = 0;
+            data_image[i*width+j] = image.data[(i*width+j)*3+2]*0.299 + image.data[(i*width+j)*3+1]*0.587 \
+                                     + image.data[(i*width+j)*3]*0.114;
         }
 }
 
