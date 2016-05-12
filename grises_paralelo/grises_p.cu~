@@ -72,8 +72,6 @@ cudaMemcpy(d_data_image,image.data,tam_i, cudaMemcpyHostToDevice);
  imshow( imageName, image );
  imshow( "Gray image CUDA", gray_image );
 
- waitKey(0);
-
  cudaFree(d_data_image);
  cudaFree(d_image_output);
 

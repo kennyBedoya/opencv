@@ -1,0 +1,1 @@
+/home/judge_hpccourse/kenny/opencv/grises_paralelo/build/CMakeFiles/grises_p.dir
