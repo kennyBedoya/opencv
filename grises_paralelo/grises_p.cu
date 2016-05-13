@@ -6,12 +6,12 @@
 using namespace cv;
 
 //kernel
-__global__ void image_gray(unsigned char *image_in, int width, int height, unsigned char *image_output){
+__global__ void image_gray(unsigned char *image_in, int width, int height, unsigned char *image_out){
 int row = blockIdx.y*blockDim.y+threadIdx.y;
 int col = blockIdx.x*blockDim.x+threadIdx.x;
 
 if((row < height) && (col < width)){
-  image_output[row*width+col] = image_in[(row*width+col)*3+ 2]*0.299 + image_in[(row*width+col)*3+ 1]*0.587 + image_in[(row*width+col)*3+0]*0.114;
+  image_out[row*width+col] = image_in[(row*width+col)*3+ 2]*0.299 + image_in[(row*width+col)*3+ 1]*0.587 + image_in[(row*width+col)*3+0]*0.114;
   }
 }
 
@@ -37,13 +37,14 @@ int main( int argc, char** argv ){
  //reservar memoria
  unsigned char *data_image, *d_data_image,*image_output, *d_image_output;
 
- int tam_i = sizeof(unsigned char)*width*height;
+ int tam_i = sizeof(unsigned char)*width*height*image.channels();
+ int tam_gray = sizeof(unsigned char)*width*height;
 
  data_image = (unsigned char*)malloc(tam_i);
  cudaMalloc((void**)&d_data_image,tam_i);
 
- image_output = (unsigned char*)malloc(tam_i);
- cudaMalloc((void**)&d_image_output,tam_i);
+ image_output = (unsigned char*)malloc(tam_gray);
+ cudaMalloc((void**)&d_image_output,tam_gray);
 
 data_image = image.data;
 //pasando al device
@@ -57,7 +58,7 @@ cudaMemcpy(d_data_image,data_image,tam_i, cudaMemcpyHostToDevice);
  cudaDeviceSynchronize();
 
  //pasando al host
- cudaMemcpy(image_output,d_image_output,tam_i,cudaMemcpyDeviceToHost);
+ cudaMemcpy(image_output,d_image_output,tam_gray,cudaMemcpyDeviceToHost);
 
  //creando imagenes
  Mat gray_image;
