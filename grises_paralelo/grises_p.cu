@@ -11,7 +11,7 @@ int row = blockIdx.y*blockDim.y+threadIdx.y;
 int col = blockIdx.x*blockDim.x+threadIdx.x;
 
 if((row < height) && (col < width)){
-  image_out[row*width+col] = image_in[(row*width+col)*3+ 2]*0.299 + image_in[(row*width+col)*3+ 1]*0.587 + image_in[(row*width+col)*3+0]*0.114;
+  image_output[row*width+col] = image_in[(row*width+col)*3+ 2]*0.299 + image_in[(row*width+col)*3+ 1]*0.587 + image_in[(row*width+col)*3+0]*0.114;
   }
 }
 
@@ -45,8 +45,9 @@ int main( int argc, char** argv ){
  image_output = (unsigned char*)malloc(tam_i);
  cudaMalloc((void**)&d_image_output,tam_i);
 
+data_image = image.data;
 //pasando al device
-cudaMemcpy(d_data_image,image.data,tam_i, cudaMemcpyHostToDevice);
+cudaMemcpy(d_data_image,data_image,tam_i, cudaMemcpyHostToDevice);
 
 
  int blockSize = 32;

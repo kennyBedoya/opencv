@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/grises_p.dir/grises_p_generated_grises_p.cu.o"
   "grises_p.pdb"
   "grises_p"
 )
