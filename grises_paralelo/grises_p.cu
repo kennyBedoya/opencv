@@ -11,11 +11,14 @@ int row = blockIdx.y*blockDim.y+threadIdx.y;
 int col = blockIdx.x*blockDim.x+threadIdx.x;
 
 if((row < height) && (col < width)){
-  image_out[row*width+col] = image_in[(row*width+col)*3+ 2]*0.299 + image_in[(row*width+col)*3+ 1]*0.587 + image_in[(row*width+col)*3+0]*0.114;
+  image_out[row*width+col] = image_in[(row*width+col)*3+ 2]*0.299 + image_in[(row*width+col)*3+ 1]*0.587 + image_in[(row*width+col)*3]*0.114;
   }
+
+
 }
 
 int main( int argc, char** argv ){
+
  //imagen de entrada
  char* imageName = argv[1];
 
@@ -37,7 +40,7 @@ int main( int argc, char** argv ){
  //reservar memoria
  unsigned char *data_image, *d_data_image,*image_output, *d_image_output;
 
- int tam_i = sizeof(unsigned char)*width*height*image.channels();
+ int tam_i = sizeof(unsigned char)*width*height;
  int tam_gray = sizeof(unsigned char)*width*height;
 
  data_image = (unsigned char*)malloc(tam_i);
@@ -46,10 +49,21 @@ int main( int argc, char** argv ){
  image_output = (unsigned char*)malloc(tam_gray);
  cudaMalloc((void**)&d_image_output,tam_gray);
 
+
 data_image = image.data;
+
+//PRUEBA
+ Mat prueba;
+ prueba.create(height, width, CV_8UC1);
+ prueba.data = image.data;
+
+ namedWindow( "image PRUEBA", CV_WINDOW_AUTOSIZE);
+ imshow( "image PRUEBA", prueba );
+//FIN PRUEBA
+
+
 //pasando al device
 cudaMemcpy(d_data_image,data_image,tam_i, cudaMemcpyHostToDevice);
-
 
  int blockSize = 32;
  dim3 dimBlock(blockSize,blockSize,1);
@@ -64,6 +78,7 @@ cudaMemcpy(d_data_image,data_image,tam_i, cudaMemcpyHostToDevice);
  Mat gray_image;
  gray_image.create(height, width, CV_8UC1);
  gray_image.data = image_output;
+
 
  //mostrar imagenes
  imwrite( "../../images/Gray_Image.jpg", gray_image );
