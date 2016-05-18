@@ -79,7 +79,7 @@ int main(int argc, char **argv){
     img2gray<<<dimGrid,dimBlock>>>(d_dataRawImage,width,height,d_imageOutput);
     cudaDeviceSynchronize();
     cudaMemcpy(h_imageOutput,d_imageOutput,sizeGray,cudaMemcpyDeviceToHost);
-    endGPU = clock();
+    //endGPU = clock();
 
     Mat gray_image;
     gray_image.create(height,width,CV_8UC1);
@@ -88,14 +88,14 @@ int main(int argc, char **argv){
    // start = clock();
     Mat gray_image_opencv;
     cvtColor(image, gray_image_opencv, CV_BGR2GRAY);
-    end = clock();
+    //end = clock();
 
 
     imwrite("./Gray_Image.jpg",gray_image);
 
-    namedWindow(imageName, WINDOW_NORMAL);
-    namedWindow("Gray Image CUDA", WINDOW_NORMAL);
-    namedWindow("Gray Image OpenCV", WINDOW_NORMAL);
+    namedWindow(imageName, WINDOW_AUTOSIZE);
+    namedWindow("Gray Image CUDA", WINDOW_AUTOSIZE);
+    namedWindow("Gray Image OpenCV", WINDOW_AUTOSIZE);
 
     imshow(imageName,image);
     imshow("Gray Image CUDA", gray_image);

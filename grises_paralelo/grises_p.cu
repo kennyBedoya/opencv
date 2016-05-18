@@ -15,8 +15,7 @@ __global__ void img2gray(unsigned char *imageInput, int width, int height, unsig
     int col = blockIdx.x*blockDim.x+threadIdx.x;
 
     if((row < height) && (col < width)){
-        imageOutput[row*width+col] = imageInput[(row*width+col)*3+RED]*0.299 + imageInput[(row*width+col)*3+GREEN]*0.587 \
-                                     + imageInput[(row*width+col)*3+BLUE]*0.114;
+        imageOutput[row*width+col] = imageInput[(row*width+col)*3+RED]*0.299 + imageInput[(row*width+col)*3+GREEN]*0.58 + imageInput[(row*width+col)*3+BLUE]*0.114;
     }
 }
 
@@ -93,9 +92,9 @@ int main(int argc, char **argv){
 
     imwrite("./Gray_Image.jpg",gray_image);
 
-    namedWindow(imageName, WINDOW_NORMAL);
-    namedWindow("Gray Image CUDA", WINDOW_NORMAL);
-    namedWindow("Gray Image OpenCV", WINDOW_NORMAL);
+    namedWindow(imageName, WINDOW_AUTOSIZE);
+    namedWindow("Gray Image CUDA", WINDOW_AUTOSIZE);
+    namedWindow("Gray Image OpenCV", WINDOW_AUTOSIZE);
 
     imshow(imageName,image);
     imshow("Gray Image CUDA", gray_image);
