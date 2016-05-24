@@ -1,0 +1,1 @@
+/home/hera_hpccourse/kenny/opencv/grises_compartida/build/CMakeFiles/grises_com.dir
