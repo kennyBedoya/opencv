@@ -5,6 +5,10 @@ using namespace cv;
 
 int main( int argc, char** argv )
 {
+
+ clock_t start, end;
+ double cpu_time_used;
+ 
  char* imageName = argv[1];
 
  Mat image;
@@ -34,13 +38,16 @@ int main( int argc, char** argv )
 
  //data_image = image.clone();
 //Mat gray_image = image.clone();
- 
+start = clock();
+
 for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             data_image[i*width+j] = image.data[(i*width+j)*3+2]*0.299 + image.data[(i*width+j)*3+1]*0.587 \
                                      + image.data[(i*width+j)*3]*0.114;
         }
 }
+
+end = clock();
 
  Mat gray_image;
  gray_image.create(height, width, CV_8UC1);
@@ -56,6 +63,9 @@ for (int i = 0; i < height; i++) {
  imshow( "Gray image", gray_image );
 
  waitKey(0);
+ 
+ cpu_time_used = ((double) (end - start)) /CLOCKS_PER_SEC;
+ printf("Tiempo secuencial: %.10f\n",cpu_time_used);
 
 //free(data_image);
 

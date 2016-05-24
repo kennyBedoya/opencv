@@ -16,6 +16,10 @@ if((row < height) && (col < width)){
 }
 
 int main( int argc, char** argv ){
+
+ clock_t start, end, startGPU, endGPU;
+ double cpu_time_used, gpu_time_used;
+ 
  //imagen de entrada
  char* imageName = argv[1];
 
@@ -47,7 +51,9 @@ int main( int argc, char** argv ){
  cudaMalloc((void**)&d_image_output,tam_gray);
 
 data_image = image.data;
+
 //pasando al device
+startGPU = clock();
 cudaMemcpy(d_data_image,image.data,tam_i, cudaMemcpyHostToDevice);
 
 
@@ -59,6 +65,12 @@ cudaMemcpy(d_data_image,image.data,tam_i, cudaMemcpyHostToDevice);
 
  //pasando al host
  cudaMemcpy(image_output,d_image_output,tam_gray,cudaMemcpyDeviceToHost);
+ endGPU = clock();
+ 
+ start = clock();
+ Mat gray_image_opencv;
+ cvtColor(image, gray_image_opencv, CV_BGR2GRAY);
+ end = clock();
 
  //creando imagenes
  Mat gray_image;
@@ -70,11 +82,18 @@ cudaMemcpy(d_data_image,image.data,tam_i, cudaMemcpyHostToDevice);
 
  namedWindow( imageName, CV_WINDOW_AUTOSIZE); //CV_WINDOW_AUTOSIZE
  namedWindow( "Gray image CUDA", CV_WINDOW_AUTOSIZE);
+ namedWindow("Gray image OpenCV", CV_WINDOW_AUTOSIZE);
 
  imshow( imageName, image );
  imshow( "Gray image CUDA", gray_image );
+ imshow ("Gray image OpenCV", gray_image_opencv);
 
  waitKey(0);
+ 
+ gpu_time_used = ((double) (endGPU - startGPU)) / CLOCKS_PER_SEC;
+ printf("Tiempo Algoritmo Paralelo: %.10f\n",gpu_time_used);
+ cpu_time_used = ((double) (end - start)) /CLOCKS_PER_SEC;
+ printf("Tiempo Algoritmo OpenCV: %.10f\n",cpu_time_used);
 
  cudaFree(d_data_image);
  cudaFree(d_image_output);

@@ -1,1 +1,1 @@
-/home/judge_hpccourse/kenny/opencv/grises/build/CMakeFiles/grises_s.dir
+/home/hera_hpccourse/kenny/opencv/grises/build/CMakeFiles/grises_s.dir
