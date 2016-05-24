@@ -1,0 +1,1 @@
+/home/hera_hpccourse/kenny/opencv/grises_global/build/CMakeFiles/global.dir
