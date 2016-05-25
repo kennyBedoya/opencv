@@ -110,6 +110,5 @@ A continuación se muestran las tablas con los condesados de promedios de aceler
 
 ####Conclusiones
 
-- **1)**as
-- **2)**
-- **3)**
+- **1)**Los dos algoritmos implementados para su ejecución en paralelo obtuvieron un mejor desempeño con respecto a la implementación secuencial.
+- **2)**Se observa que gracias al uso de memoria compartida se logra un desempeño aún mayor que la solución paralela ingenua.
